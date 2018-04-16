@@ -9,14 +9,18 @@ package dpsLaboratoryExamination;
  *
  * @author LeopardProMK
  */
-public class BloodTest extends AbstractTest {
+public abstract class AbstractTest {
 
-    public BloodTest() {
-        super.description = "Podstawowe badanie krwii";
+    protected String description;
+
+    public String getDescription() {
+        return description;
     }
 
+    public abstract double getPrice();
+
     @Override
-    public double getPrice() {
-        return 30.0;
+    public String toString() {
+        return getPrice() + "(" + getDescription() + ")";
     }
 }
