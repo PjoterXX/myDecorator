@@ -7,6 +7,8 @@ package mydecorator;
 
 import dpsLaboratoryExamination.AbstractTest;
 import dpsLaboratoryExamination.AdditionalStudies.ALTDecorator;
+import dpsLaboratoryExamination.AdditionalStudies.HDLDecorator;
+import dpsLaboratoryExamination.AdditionalStudies.KwasMoczowyDecorator;
 import dpsLaboratoryExamination.AdditionalStudiesBad.BloodTestAndHDL;
 import dpsLaboratoryExamination.AdditionalStudiesBad.BloodTestAndKwasMoczowyAndALT;
 import dpsLaboratoryExamination.BloodTest;
@@ -57,8 +59,11 @@ public class Client {
         allTest2.add(bloodTest2);
 
         // Podstawowe badanie wraz z ALT, HDL oraz kwasem moczowym
-        //...
-        //allTest2.add(bloodTest2);
+        bloodTest2 = new BloodTest();
+        bloodTest2 = new ALTDecorator(bloodTest2);
+        bloodTest2 = new HDLDecorator(bloodTest2);
+        bloodTest2 = new KwasMoczowyDecorator(bloodTest2);
+        allTest2.add(bloodTest2);
 
         // Wyswietl wszystkie testy do wykonania
         ShowAllTest(allTest2);
