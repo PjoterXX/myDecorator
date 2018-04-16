@@ -5,6 +5,8 @@
  */
 package mydecorator;
 
+import dpsLaboratoryExamination.AbstractTest;
+import dpsLaboratoryExamination.AdditionalStudies.ALTDecorator;
 import dpsLaboratoryExamination.AdditionalStudiesBad.BloodTestAndHDL;
 import dpsLaboratoryExamination.AdditionalStudiesBad.BloodTestAndKwasMoczowyAndALT;
 import dpsLaboratoryExamination.BloodTest;
@@ -42,33 +44,31 @@ public class Client {
         /* vs */
 
         /* Decorator */
-        BloodTest bloodTest2 = null;
-        List<BloodTest> allTest2 = new ArrayList<>();
+        AbstractTest bloodTest2;
+        List<AbstractTest> allTest2 = new ArrayList<>();
 
         // Podstawowe badanie
-        //...
+        bloodTest2 = new BloodTest();
         allTest2.add(bloodTest2);
 
-        // Podstawowe badanie wraz z LDL
-        //...
+        // Podstawowe badanie wraz z ALT
+        bloodTest2 = new BloodTest();
+        bloodTest2 = new ALTDecorator(bloodTest2);
         allTest2.add(bloodTest2);
 
         // Podstawowe badanie wraz z ALT, HDL oraz kwasem moczowym
         //...
-        allTest2.add(bloodTest2);
+        //allTest2.add(bloodTest2);
 
         // Wyswietl wszystkie testy do wykonania
         ShowAllTest(allTest2);
     }
 
-    private static void ShowAllTest(List<BloodTest> allTest) {
+    private static void ShowAllTest(List<AbstractTest> allTest) {
         for (int i = 0; i < allTest.size(); i++) {
-            BloodTest test = allTest.get(i);
-            if (test != null) {
-                int testNumber = i + 1;
-                System.out.println("Badanie " + testNumber + ":");
-                System.out.println(" * " + test);
-            }
+            int testNumber = i + 1;
+            System.out.println("Badanie " + testNumber + ":");
+            System.out.println(" * " + allTest.get(i));
         }
     }
 }
